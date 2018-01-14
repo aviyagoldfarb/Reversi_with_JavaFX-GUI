@@ -1,0 +1,22 @@
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<?import javafx.scene.text.Text?>
+<HBox xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="reversi_gui.ReversiGameController" fx:id="root" spacing="0">
+    <VBox spacing="0">
+        <Label text="Current player:"
+               GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <Text fx:id="CurrentPlayerText"
+              GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+        <Label text="Black player score:"
+               GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <Text fx:id="BlackPlayerScoreText"
+              GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+        <Label text="White player score:"
+               GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+        <Text fx:id="WhitePlayerScoreText"
+              GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+    </VBox>
+</HBox>
+
