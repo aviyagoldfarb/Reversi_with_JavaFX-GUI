@@ -1,7 +1,7 @@
 package reversi_code;
 
 /**
- * interface GuiPlayer.
+ * interface GuiPlayersHandler.
  */
 public interface Player {
 

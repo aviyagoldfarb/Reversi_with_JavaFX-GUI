@@ -12,8 +12,6 @@ public class HumanEnemyGameFlow implements GameFlow {
     private Player blackPlayer, whitePlayer;
     //pointer to GameLogic object
     private AbstractGameLogic gameLogic;
-    //pointer to DisplayGameOnConsole object
-    private DisplayGame displayGame;
     //pointers to HumanPlayer object
     private Player turn, nextTurn;
 
@@ -22,13 +20,11 @@ public class HumanEnemyGameFlow implements GameFlow {
      * @param blackPlayer
      * @param whitePlayer
      * @param gameLogic
-     * @param displayGame
      */
-    public HumanEnemyGameFlow(Player blackPlayer, Player whitePlayer, AbstractGameLogic gameLogic, DisplayGame displayGame) {
+    public HumanEnemyGameFlow(Player blackPlayer, Player whitePlayer, AbstractGameLogic gameLogic) {
         this.blackPlayer = blackPlayer;
         this.whitePlayer = whitePlayer;
         this.gameLogic = gameLogic;
-        this.displayGame = displayGame;
     }
 
     /**
@@ -81,7 +77,7 @@ public class HumanEnemyGameFlow implements GameFlow {
             System.out.println();
 
             //printing the board using printGameBoard function from DisplayGameOnConsole class
-            this.displayGame.printGameBoard();
+            //this.displayGame.printGameBoard();
 
             System.out.println(String.valueOf(this.turn.getPlayerSign()) + ": It's your move.");
             //check for the possible moves
@@ -131,7 +127,7 @@ public class HumanEnemyGameFlow implements GameFlow {
                 gameLogic.possibleMoves(this.nextTurn, this.turn).size() != 0));
 
         //printing the board using printGameBoard function from DisplayGameOnConsole class
-        this.displayGame.printGameBoard();
+        //this.displayGame.printGameBoard();
         System.out.println();
         System.out.println();
         //display the results of the game

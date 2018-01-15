@@ -12,33 +12,25 @@ import java.util.ResourceBundle;
 public class ReversiGameController implements Initializable {
     @FXML
     private HBox root;
-    private int[][] maze = {
-            {0,0,0,0,0,0,0,0},
-            {0,0,0,0,0,0,0,0},
-            {0,0,0,0,0,0,0,0},
-            {0,0,0,0,0,0,0,0},
-            {0,0,0,0,0,0,0,0},
-            {0,0,0,0,0,0,0,0},
-            {0,0,0,0,0,0,0,0},
-            {0,0,0,0,0,0,0,0}
-
-    };
+    private Board board;
+    private Player blackPlayer;
+    private Player whitePlayer;
+    private AbstractGameLogic gameLogic;
 @Override
 public void initialize(URL location, ResourceBundle resources) {
 
 
 
     //creating an instance of Board object
-    Board board = new Board(8, 8);
-    Player blackPlayer = new HumanPlayer(Sign.BLACK);
-    Player whitePlayer = new HumanPlayer(Sign.WHITE);
-    AbstractGameLogic gameLogic = new GameLogic(board);
-    //DisplayGame displayGameOnConsole = new DisplayGameOnConsole(board);
+    board = new Board(8, 8);
+    blackPlayer = new HumanPlayer(Sign.BLACK);
+    whitePlayer = new HumanPlayer(Sign.WHITE);
+    gameLogic = new GameLogic(board);
 
-    GameFlow gameFlow = new HumanEnemyGameFlow(blackPlayer, whitePlayer, gameLogic, displayGameOnConsole);
-    gameFlow.playTheGame();
+    //GameFlow gameFlow = new HumanEnemyGameFlow(blackPlayer, whitePlayer, gameLogic);
+    //gameFlow.playTheGame();
 
-    ReversiBoard reversiBoard = new ReversiBoard(maze);
+    ReversiBoard reversiBoard = new ReversiBoard(board, blackPlayer, whitePlayer, gameLogic);
     reversiBoard.setPrefWidth(400);
     reversiBoard.setPrefHeight(400);
     root.getChildren().add(0, reversiBoard);
