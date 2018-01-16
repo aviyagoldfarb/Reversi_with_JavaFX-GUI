@@ -21,6 +21,6 @@ public interface GameFlow {
     /**
      * responsible for the game's running.
      */
-    void playTheGame();
+    int playTheGame(Point chosenCell);
 
 }

@@ -14,22 +14,26 @@ public class ReversiBoard extends GridPane {
     private Player blackPlayer;
     private Player whitePlayer;
     private AbstractGameLogic gameLogic;
+    private GameFlow gameFlow;
     private GuiPlayersHandler guiPlayersHandler;
 
-    public ReversiBoard(Board board, Player blackPlayer, Player whitePlayer, AbstractGameLogic gameLogic) {
+    private FXMLLoader fxmlLoader;
+
+    public ReversiBoard(Board board, Player blackPlayer, Player whitePlayer, AbstractGameLogic gameLogic, GameFlow gameFlow) {
         this.board = board;
         this.blackPlayer = blackPlayer;
         this.whitePlayer = whitePlayer;
         this.gameLogic = gameLogic;
+        this.gameFlow = gameFlow;
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ReversiBoard.fxml"));
+        fxmlLoader = new FXMLLoader(getClass().getResource("ReversiBoard.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
-
+        /*
         try {
             fxmlLoader.load();
             this.setOnMouseClicked(event -> {
-                Point clickedPoint = new Point((int)event.getSceneX(), (int)event.getSceneY());
+                Point clickedPoint = new Point(this.getRowIndex(), this.getColumnIndex());
                 //this.gameLogic.moveMaker(p, blackPlayer, whitePlayer);
                 //(int)event.getSceneX(), (int)event.getSceneY()
                 guiPlayersHandler.makeMove(clickedPoint);
@@ -38,8 +42,8 @@ public class ReversiBoard extends GridPane {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
-
-        guiPlayersHandler = new GuiPlayersHandler(this.blackPlayer, this.whitePlayer, this.board, this.gameLogic, this);
+        */
+        guiPlayersHandler = new GuiPlayersHandler(this.blackPlayer, this.whitePlayer, this.board, this.gameLogic, this.gameFlow, this);
     }
 
     public void draw() {
@@ -64,6 +68,16 @@ public class ReversiBoard extends GridPane {
                 Rectangle rectangle = new Rectangle(cellWidth, cellHeight, Color.GREEN);
                 rectangle.setStroke(Color.BLACK);
                 this.add(rectangle, j, i);
+                try {
+                    fxmlLoader.load();
+                    rectangle.setOnMouseClicked(event -> {
+                        Point clickedPoint = new Point(this.getRowIndex(rectangle) + 1, this.getColumnIndex(rectangle) + 1);
+                        guiPlayersHandler.makeMove(clickedPoint);
+                        event.consume();
+                    });
+                } catch (IOException exception) {
+                    throw new RuntimeException(exception);
+                }
 
             }
         }

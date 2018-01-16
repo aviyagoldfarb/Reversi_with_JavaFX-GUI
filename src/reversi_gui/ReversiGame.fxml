@@ -1,22 +1,61 @@
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.control.*?>
+<?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
-<HBox xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="reversi_gui.ReversiGameController" fx:id="root" spacing="0">
+
+<?import javafx.scene.control.cell.TextFieldListCell?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.Button?>
+<HBox fx:id="root" spacing="0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="reversi_gui.ReversiGameController">
     <VBox spacing="0">
-        <Label text="Current player:"
-               GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-        <Text fx:id="CurrentPlayerText"
-              GridPane.rowIndex="1" GridPane.columnIndex="1"/>
-        <Label text="Black player score:"
-               GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-        <Text fx:id="BlackPlayerScoreText"
-              GridPane.rowIndex="2" GridPane.columnIndex="1"/>
-        <Label text="White player score:"
-               GridPane.rowIndex="3" GridPane.columnIndex="0"/>
-        <Text fx:id="WhitePlayerScoreText"
-              GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+        <Label text="Current player:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <Text fx:id="CurrentPlayerText" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <Label text="Black player score:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <Text fx:id="BlackPlayerScoreText" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <Label text="White player score:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+        <Text fx:id="WhitePlayerScoreText" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+        <HBox alignment="bottom_right" GridPane.columnIndex="1" GridPane.rowIndex="4">
+         <MenuButton mnemonicParsing="false" text="Settings">
+           <items>
+             <MenuItem mnemonicParsing="false" text="">
+                  <graphic>
+                       <Label text="Size of the board (4-20)">
+                        <graphic>
+                             <TextField fx:id="sizeTextField" />
+                        </graphic>
+                     </Label>
+                  </graphic>
+             </MenuItem>
+               <MenuItem mnemonicParsing="false" text="">
+                   <graphic>
+                       <Label text="The color of player 1">
+                           <graphic>
+                               <TextField fx:id="firstcolorTextField" />
+                           </graphic>
+                       </Label>
+                   </graphic>
+               </MenuItem>
+             <MenuItem mnemonicParsing="false" text="">
+                  <graphic>
+                       <Label text="The color of player 2">
+                        <graphic>
+                             <TextField fx:id="secondcolorTextField" />
+                        </graphic>
+                     </Label>
+                  </graphic>
+             </MenuItem>
+           </items>
+         </MenuButton>
+            <HBox alignment="bottom_right" GridPane.rowIndex="5" GridPane.columnIndex="1">
+                <Button text = "Apply" onAction = "#Apply">
+                </Button>
+            </HBox>
+        </HBox>
     </VBox>
 </HBox>
-
