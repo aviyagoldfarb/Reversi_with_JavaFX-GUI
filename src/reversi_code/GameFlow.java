@@ -23,4 +23,9 @@ public interface GameFlow {
      */
     int playTheGame(Point chosenCell);
 
+    /**
+     * returns the color of player with the current turn
+     * @return
+     */
+    String getCurrentTurn();
 }

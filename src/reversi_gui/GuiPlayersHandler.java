@@ -20,9 +20,11 @@ public class GuiPlayersHandler {
     private Circle disk;
     private Text BlackPlayerScoreText;
     private Text WhitePlayerScoreText;
+    private Text CurrentPlayerText;
 
     public GuiPlayersHandler(Player player1, Player player2, Board board, AbstractGameLogic gameLogic,
-                             GameFlow gameFlow, GridPane grid, Text BlackPlayerScoreText, Text WhitePlayerScoreText) {
+                             GameFlow gameFlow, GridPane grid, Text BlackPlayerScoreText, Text WhitePlayerScoreText,
+                             Text CurrentPlayerText) {
         this.player1 = player1;
         this.player2 = player2;
         this.board = board;
@@ -31,6 +33,7 @@ public class GuiPlayersHandler {
         this.grid = grid;
         this.BlackPlayerScoreText = BlackPlayerScoreText;
         this.WhitePlayerScoreText = WhitePlayerScoreText;
+        this.CurrentPlayerText = CurrentPlayerText;
     }
 
     public void draw() {
@@ -53,6 +56,7 @@ public class GuiPlayersHandler {
     public void makeMove(Point clickedPoint) {
         int endOfGame = 0;
         endOfGame = gameFlow.playTheGame(clickedPoint);
+        this.CurrentPlayerText.setText(this.gameFlow.getCurrentTurn());
         this.BlackPlayerScoreText.setText(Integer.toString(player1.getPlayerScore()));
         this.WhitePlayerScoreText.setText(Integer.toString(player2.getPlayerScore()));
         redraw();
@@ -61,12 +65,16 @@ public class GuiPlayersHandler {
             alert.setTitle("Game Over");
             alert.setHeaderText("The winner is:");
             if(player1.getPlayerScore() > player2.getPlayerScore()){
+                String playerColor = player1.getPlayerColor();
                 String playerScore = Integer.toString(player1.getPlayerScore());
-                alert.setContentText("The black player with " + playerScore + " cells.");
+                String finalStr = "The " + playerColor + " player with " + playerScore + " cells.";
+                alert.setContentText(finalStr);
             }
             if(player1.getPlayerScore() < player2.getPlayerScore()){
+                String playerColor = player2.getPlayerColor();
                 String playerScore = Integer.toString(player2.getPlayerScore());
-                alert.setContentText("The white player with " + playerScore + " cells.");
+                String finalStr = "The " + playerColor + " player with " + playerScore + " cells.";
+                alert.setContentText(finalStr);
             }
             if(player1.getPlayerScore() == player2.getPlayerScore()){
                 String playerScore = Integer.toString(player1.getPlayerScore());

@@ -14,7 +14,7 @@ public class ReversiGameController implements Initializable {
     @FXML
     private HBox root;
     @FXML
-    private Text CurrentPlayerText;
+    public Text CurrentPlayerText;
     @FXML
     public Text BlackPlayerScoreText;
     @FXML
@@ -49,7 +49,6 @@ public void initialize(URL location, ResourceBundle resources) {
 
     if(exists){
         try {
-            //File file = new File("test.txt");
             FileReader fileReader = new FileReader(checkFileExistence);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             StringBuffer stringBuffer = new StringBuffer();
@@ -57,16 +56,6 @@ public void initialize(URL location, ResourceBundle resources) {
             sizeOfBoardStr = bufferedReader.readLine();
             player1Color = bufferedReader.readLine();
             player2Color = bufferedReader.readLine();
-            /*
-            String line;
-            while ((line = bufferedReader.readLine()) != null) {
-                stringBuffer.append(line);
-                stringBuffer.append("\n");
-            }
-            fileReader.close();
-            System.out.println("Contents of file:");
-            System.out.println(stringBuffer.toString());
-            */
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -86,7 +75,7 @@ public void initialize(URL location, ResourceBundle resources) {
     gameFlow = new HumanEnemyGameFlow(blackPlayer, whitePlayer, gameLogic);
 
     ReversiBoard reversiBoard = new ReversiBoard(board, blackPlayer, whitePlayer, gameLogic, gameFlow,
-            BlackPlayerScoreText, WhitePlayerScoreText);
+            BlackPlayerScoreText, WhitePlayerScoreText, CurrentPlayerText);
     reversiBoard.setPrefWidth(400);
     reversiBoard.setPrefHeight(400);
     root.getChildren().add(0, reversiBoard);

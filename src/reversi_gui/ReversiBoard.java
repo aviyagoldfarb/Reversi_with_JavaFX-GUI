@@ -21,7 +21,7 @@ public class ReversiBoard extends GridPane {
     private FXMLLoader fxmlLoader;
 
     public ReversiBoard(Board board, Player blackPlayer, Player whitePlayer, AbstractGameLogic gameLogic,
-                        GameFlow gameFlow, Text BlackPlayerScoreText, Text WhitePlayerScoreText) {
+                        GameFlow gameFlow, Text BlackPlayerScoreText, Text WhitePlayerScoreText, Text CurrentPlayerText) {
         this.board = board;
         this.blackPlayer = blackPlayer;
         this.whitePlayer = whitePlayer;
@@ -31,22 +31,9 @@ public class ReversiBoard extends GridPane {
         fxmlLoader = new FXMLLoader(getClass().getResource("ReversiBoard.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
-        /*
-        try {
-            fxmlLoader.load();
-            this.setOnMouseClicked(event -> {
-                Point clickedPoint = new Point(this.getRowIndex(), this.getColumnIndex());
-                //this.gameLogic.moveMaker(p, blackPlayer, whitePlayer);
-                //(int)event.getSceneX(), (int)event.getSceneY()
-                guiPlayersHandler.makeMove(clickedPoint);
-                event.consume();
-            });
-        } catch (IOException exception) {
-            throw new RuntimeException(exception);
-        }
-        */
+
         guiPlayersHandler = new GuiPlayersHandler(this.blackPlayer, this.whitePlayer, this.board, this.gameLogic,
-                this.gameFlow, this, BlackPlayerScoreText, WhitePlayerScoreText);
+                this.gameFlow, this, BlackPlayerScoreText, WhitePlayerScoreText, CurrentPlayerText);
     }
 
     public void draw() {
@@ -68,7 +55,7 @@ public class ReversiBoard extends GridPane {
         guiPlayersHandler.setRadius(radius);
         for (int i = 0; i < board.getRows(); i++) {
             for (int j = 0; j < board.getColumns(); j++) {
-                Rectangle rectangle = new Rectangle(cellWidth, cellHeight, Color.YELLOWGREEN);
+                Rectangle rectangle = new Rectangle(cellWidth, cellHeight, Color.GREEN);
                 rectangle.setStroke(Color.BLACK);
                 this.add(rectangle, j, i);
                 try {

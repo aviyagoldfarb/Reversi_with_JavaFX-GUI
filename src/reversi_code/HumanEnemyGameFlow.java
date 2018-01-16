@@ -172,4 +172,12 @@ public class HumanEnemyGameFlow implements GameFlow {
         System.out.println();
         */
     }
+
+    /**
+     * returns the color of player with the current turn
+     * @return
+     */
+    public String getCurrentTurn(){
+        return this.turn.getPlayerColor();
+    }
 }
