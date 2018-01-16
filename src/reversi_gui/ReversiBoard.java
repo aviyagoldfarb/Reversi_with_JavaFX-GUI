@@ -1,5 +1,6 @@
 package reversi_gui;
 
+import javafx.scene.text.Text;
 import reversi_code.*;
 
 import javafx.fxml.FXMLLoader;
@@ -19,7 +20,8 @@ public class ReversiBoard extends GridPane {
 
     private FXMLLoader fxmlLoader;
 
-    public ReversiBoard(Board board, Player blackPlayer, Player whitePlayer, AbstractGameLogic gameLogic, GameFlow gameFlow) {
+    public ReversiBoard(Board board, Player blackPlayer, Player whitePlayer, AbstractGameLogic gameLogic,
+                        GameFlow gameFlow, Text BlackPlayerScoreText, Text WhitePlayerScoreText) {
         this.board = board;
         this.blackPlayer = blackPlayer;
         this.whitePlayer = whitePlayer;
@@ -43,7 +45,8 @@ public class ReversiBoard extends GridPane {
             throw new RuntimeException(exception);
         }
         */
-        guiPlayersHandler = new GuiPlayersHandler(this.blackPlayer, this.whitePlayer, this.board, this.gameLogic, this.gameFlow, this);
+        guiPlayersHandler = new GuiPlayersHandler(this.blackPlayer, this.whitePlayer, this.board, this.gameLogic,
+                this.gameFlow, this, BlackPlayerScoreText, WhitePlayerScoreText);
     }
 
     public void draw() {
@@ -65,7 +68,7 @@ public class ReversiBoard extends GridPane {
         guiPlayersHandler.setRadius(radius);
         for (int i = 0; i < board.getRows(); i++) {
             for (int j = 0; j < board.getColumns(); j++) {
-                Rectangle rectangle = new Rectangle(cellWidth, cellHeight, Color.GREEN);
+                Rectangle rectangle = new Rectangle(cellWidth, cellHeight, Color.YELLOWGREEN);
                 rectangle.setStroke(Color.BLACK);
                 this.add(rectangle, j, i);
                 try {

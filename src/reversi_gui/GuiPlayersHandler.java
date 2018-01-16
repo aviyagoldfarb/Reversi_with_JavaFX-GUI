@@ -1,5 +1,6 @@
 package reversi_gui;
 
+import javafx.scene.text.Text;
 import reversi_code.*;
 import javafx.geometry.HPos;
 import javafx.scene.Node;
@@ -17,26 +18,31 @@ public class GuiPlayersHandler {
     private GridPane grid;
     private int radius;
     private Circle disk;
+    private Text BlackPlayerScoreText;
+    private Text WhitePlayerScoreText;
 
-    public GuiPlayersHandler(Player player1, Player player2, Board board, AbstractGameLogic gameLogic, GameFlow gameFlow, GridPane grid) {
+    public GuiPlayersHandler(Player player1, Player player2, Board board, AbstractGameLogic gameLogic,
+                             GameFlow gameFlow, GridPane grid, Text BlackPlayerScoreText, Text WhitePlayerScoreText) {
         this.player1 = player1;
         this.player2 = player2;
         this.board = board;
         this.gameLogic = gameLogic;
         this.gameFlow = gameFlow;
         this.grid = grid;
+        this.BlackPlayerScoreText = BlackPlayerScoreText;
+        this.WhitePlayerScoreText = WhitePlayerScoreText;
     }
 
     public void draw() {
         for (int i = 0; i < board.getRows(); i++) {
             for (int j = 0; j < board.getColumns(); j++) {
                 if (board.getBoard()[i][j].getCell() == Sign.BLACK){
-                    Circle circle = new Circle(radius, Color.BLACK);
+                    Circle circle = new Circle(radius, Color.valueOf(player1.getPlayerColor()));
                     this.grid.setHalignment(circle, HPos.CENTER);
                     this.grid.add(circle, j, i);
                 }
                 if (board.getBoard()[i][j].getCell() == Sign.WHITE){
-                    Circle circle = new Circle(radius, Color.WHITE);
+                    Circle circle = new Circle(radius, Color.valueOf(player2.getPlayerColor()));
                     this.grid.setHalignment(circle, HPos.CENTER);
                     this.grid.add(circle, j, i);
                 }
@@ -47,6 +53,8 @@ public class GuiPlayersHandler {
     public void makeMove(Point clickedPoint) {
         int endOfGame = 0;
         endOfGame = gameFlow.playTheGame(clickedPoint);
+        this.BlackPlayerScoreText.setText(Integer.toString(player1.getPlayerScore()));
+        this.WhitePlayerScoreText.setText(Integer.toString(player2.getPlayerScore()));
         redraw();
         if(endOfGame == 1){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);

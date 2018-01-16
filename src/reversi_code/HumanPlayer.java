@@ -9,6 +9,8 @@ public class HumanPlayer implements Player {
     private Sign playerSign;
     //the score of the player
     private int playerScore;
+    //the color of the player
+    private String playerColor;
 
     /**
      * constructor of HumanPlayer object.
@@ -17,6 +19,7 @@ public class HumanPlayer implements Player {
     public HumanPlayer(Sign playerSign) {
         this.playerSign = playerSign;
         this.playerScore = 2;
+        this.playerColor = playerSign.toString();
     }
 
     /**
@@ -49,5 +52,21 @@ public class HumanPlayer implements Player {
      */
     public void setPlayerScore(int addToPlayerScore) {
         this.playerScore += addToPlayerScore;
+    }
+
+    /**
+     * get the color of the player.
+     * @return color of the player.
+     */
+    public String getPlayerColor() {
+        return playerColor;
+    }
+
+    /**
+     * set the sign of the player(BLACK or WHITE).
+     * @param playerColor .
+     */
+    public void setPlayerColor(String playerColor) {
+        this.playerColor = playerColor;
     }
 }

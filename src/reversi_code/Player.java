@@ -25,5 +25,15 @@ public interface Player {
      * @param addToPlayerScore number to add to the current score.
      */
     void setPlayerScore(int addToPlayerScore);
+    /**
+     * get the color of the player.
+     * @return color of the player.
+     */
+    String getPlayerColor();
+    /**
+     * set the sign of the player(BLACK or WHITE).
+     * @param playerColor .
+     */
+    void setPlayerColor(String playerColor);
 
 }
