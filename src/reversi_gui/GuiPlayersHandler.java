@@ -1,5 +1,6 @@
 package reversi_gui;
 
+import javafx.scene.control.ButtonType;
 import javafx.scene.text.Text;
 import reversi_code.*;
 import javafx.geometry.HPos;
@@ -8,6 +9,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.layout.GridPane;
 import javafx.scene.control.Alert;
+
+import java.util.Optional;
+
+import static java.lang.System.exit;
 
 public class GuiPlayersHandler {
     private Player player1;
@@ -54,7 +59,7 @@ public class GuiPlayersHandler {
     }
 
     public void makeMove(Point clickedPoint) {
-        int endOfGame = 0;
+        int endOfGame;
         endOfGame = gameFlow.playTheGame(clickedPoint);
         this.CurrentPlayerText.setText(this.gameFlow.getCurrentTurn());
         this.BlackPlayerScoreText.setText(Integer.toString(player1.getPlayerScore()));
@@ -80,7 +85,13 @@ public class GuiPlayersHandler {
                 String playerScore = Integer.toString(player1.getPlayerScore());
                 alert.setContentText("No winner, both players are even with " + playerScore + " cells each.");
             }
-            alert.showAndWait();
+            //alert.showAndWait();
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK){
+                exit(0);
+            }
+
         }
     }
 
@@ -94,7 +105,6 @@ public class GuiPlayersHandler {
                 }
             }
         }
-
         this.draw();
     }
 

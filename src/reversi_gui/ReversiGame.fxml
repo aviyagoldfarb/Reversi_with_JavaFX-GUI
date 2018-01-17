@@ -16,9 +16,9 @@
     <VBox spacing="0">
         <Label text="Current player:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
         <Text fx:id="CurrentPlayerText" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-        <Label text="Black player score:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <Label text="First player score:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
         <Text fx:id="BlackPlayerScoreText" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-        <Label text="White player score:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+        <Label text="Second player score:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
         <Text fx:id="WhitePlayerScoreText" GridPane.columnIndex="1" GridPane.rowIndex="3" />
         <HBox alignment="bottom_right" GridPane.columnIndex="1" GridPane.rowIndex="4">
          <MenuButton mnemonicParsing="false" text="Settings">

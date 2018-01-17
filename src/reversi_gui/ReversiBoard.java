@@ -2,12 +2,10 @@ package reversi_gui;
 
 import javafx.scene.text.Text;
 import reversi_code.*;
-
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-
 import java.io.IOException;
 
 public class ReversiBoard extends GridPane {
@@ -17,7 +15,6 @@ public class ReversiBoard extends GridPane {
     private AbstractGameLogic gameLogic;
     private GameFlow gameFlow;
     private GuiPlayersHandler guiPlayersHandler;
-
     private FXMLLoader fxmlLoader;
 
     public ReversiBoard(Board board, Player blackPlayer, Player whitePlayer, AbstractGameLogic gameLogic,
@@ -68,7 +65,6 @@ public class ReversiBoard extends GridPane {
                 } catch (IOException exception) {
                     throw new RuntimeException(exception);
                 }
-
             }
         }
         guiPlayersHandler.draw();

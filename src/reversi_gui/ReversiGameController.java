@@ -5,7 +5,6 @@ import reversi_code.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.*;
-
 import java.io.*;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -52,7 +51,6 @@ public void initialize(URL location, ResourceBundle resources) {
             FileReader fileReader = new FileReader(checkFileExistence);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             StringBuffer stringBuffer = new StringBuffer();
-
             sizeOfBoardStr = bufferedReader.readLine();
             player1Color = bufferedReader.readLine();
             player2Color = bufferedReader.readLine();
@@ -71,6 +69,7 @@ public void initialize(URL location, ResourceBundle resources) {
         board = new Board(4, 4);
     }
 
+    CurrentPlayerText.setText(blackPlayer.getPlayerColor());
     gameLogic = new GameLogic(board);
     gameFlow = new HumanEnemyGameFlow(blackPlayer, whitePlayer, gameLogic);
 
@@ -101,8 +100,6 @@ public void initialize(URL location, ResourceBundle resources) {
 
         try {
             File configurationFile = new File("configurationFile.txt");
-
-            //if (!configurationFile.createNewFile()) { // if the file is already exists
             BufferedWriter out = new BufferedWriter(new FileWriter(configurationFile ,false));
             out.write(size);
             out.write('\n');
@@ -110,10 +107,8 @@ public void initialize(URL location, ResourceBundle resources) {
             out.write('\n');
             out.write(secondColor);
             out.close();
-            //}
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
-
     }
 }
